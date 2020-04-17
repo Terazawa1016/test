@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test','TestController@index');
 
 /**トップページ----------------------------------------------------------------**/
 
@@ -25,8 +26,13 @@ Auth::routes();
 
 // ECサイトページ--------------------------------------------------------
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/rank', 'HomeController@rank')->name('rank');
 
-Route::get('/test','TestController@index');
+// 問合せページ----------------------------------------------------------
+Route::get('/form', 'FormController@form')->name('form');
+Route::post('/receive', 'FormController@receive')->name('receive');
+
+// 商品管理ページ---------------------------------------------------------
 
 Route::get('/tool','ToolController@index')->name('tool');
 
@@ -40,8 +46,10 @@ Route::post('/tool/status/{item_id}', 'ToolController@status')->name('tool.statu
 
 Route::post('/tool/delete/{item_id}', 'ToolController@delete')->name('tool.delete');
 
+// ユーザ管理ページ----------------------------------------------------
 Route::get('/user','UserController@index')->name('user.manage');
 
+// カートページ---------------------------------------------------------
 Route::post('/click/{item_id}','HomeController@click')->name('click');
 
 Route::get('/cart', 'CartController@index')->name('cart');
@@ -50,28 +58,11 @@ Route::post('/cart/delete/{item_id}', 'CartController@delete')->name('cart.delet
 
 Route::post('/cart/change/{item_id}', 'CartController@change')->name('cart.change');
 
-//購入完了ページ
+//購入完了ページ----------------------------------------------------------
 Route::get('/finish', 'CartController@finish')->name('finish');
 
-// お気に入り機能
+// お気に入り機能---------------------------------------------------------
 Route::get('like/{id}','LikeController@store')->name('likes.like');
-Route::get('dislike{id}','LikeController@destroy')->name('likes.dislike');
+Route::get('dislike/{id}','LikeController@destroy')->name('likes.dislike');
 
 Route::get('put/{item_id}', 'HomeController@put')->name('put');
-
-// Newsページ----------------------------------------------------------------
-
-Route::get('/top/{page?}', 'TopController@index')->name('top');
-
-Route::get('/like', 'TopController@like')->name('like');
-
-// トピックを投稿
-Route::post('/favorite', 'TopController@favorite')->name('favorite');
-Route::post('/favorites', 'TopController@favorites')->name('favorites');
-
-Route::get('/chat', 'ChatController@chat')->name('chat');
-Route::post('/chat', 'ChatController@chat')->name('chat');
-
-Route::post('/update', 'ChatController@update')->name('update');
-
-Route::get('/pref', 'TopController@pref')->name('pref');

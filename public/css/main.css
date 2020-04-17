@@ -43,10 +43,6 @@
     /* margin-left: 30px; */
 }
 
-a.disabled{
-    pointer-events: none;
-}
-
 p .title{
   margin-left:20px;
 }

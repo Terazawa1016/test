@@ -25,11 +25,6 @@
                 <li>
                   <a href="/home?category=restock">restock</a>
                 </li>
-
-{{--お気に入り------------}}
-                <li>
-                  <a class="like_btn" href="/home?tab_id=1" target="_blank">favorite</a>
-                </li>
                 <li>
                   <a href="/home?category=sale">sale</a>
                 </li>
@@ -73,7 +68,7 @@
       </p>
     @endif
     <ul class="item-list">
-      @foreach ($item->all() as $item)
+      @foreach ($items as $item)
 
       <li>
         <div class="item">
@@ -100,7 +95,7 @@
 
 
               <span class="item-name">{{$item->name}}</span>
-              <span class="item-price">¥{{$item->price}}</span>
+              <span class="item-price">¥{{number_format($item->price)}}</span>
                 @if ($item->itemStock->stock === 0)
                     <p class="sold-out">売り切れ</p>
                 @else
@@ -113,5 +108,7 @@
       @endforeach
      </ul>
    </div>
+   <ul class="page">{{ $items->links() }}</ul>
+ </div>
 
 @endsection

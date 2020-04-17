@@ -274,6 +274,10 @@ a:visited.nemu  {
 
 /* top page -------------------------------------------- */
 
+.item-list {
+  padding-right:10%;
+}
+
 .item-list li {
   float:left;
   margin-top: 40px;
@@ -593,4 +597,25 @@ color:#888;
 
 img:hover {
    opacity: 0.5;
+}
+
+/* ------------------------------------------------------------------------- */
+
+
+.page li {
+
+    display: inline-block;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    border: 1px solid #D8D8D8;
+    padding-left: 17.5px;
+    padding-right: 17.5px;
+    background: #D8D8D8;
+    color: #fff;
+}
+
+.page {
+    margin-left:220px;
+    /* margin:0 auto; */
 }

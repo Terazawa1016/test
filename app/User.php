@@ -70,4 +70,9 @@ class User extends Authenticatable
     {
         return $this->likes()->where('item_id',$item_id)->exists();
     }
+
+    public function form()
+    {
+      return $this->hasMany('App\Form');
+    }
 }

@@ -82,9 +82,9 @@ class HomeController extends Controller
     }
 
 // 最後にここでデータをgetする
-    $item = $item->get();
+    $items = $item->paginate(5);
 
-      return view('/home', compact('item','count_favorite'));
+      return view('/home', compact('items','count_favorite'));
     }
 
     public function click(Request $request, $item_id)
@@ -153,6 +153,25 @@ class HomeController extends Controller
       $data->save();
 
       return redirect('/cart');
+    }
+
+    public function rank(Request $request)
+    {
+      $count_favorite = User::find(Auth::id())->likes()->count();
+
+      $item = Item::where('status', 1);
+
+        // whereHasでリレーション先でクエリを実行
+        $item = $item->whereHas('item_manage', function($query) {
+          $query->orderBy('buy_item','desc');
+        });
+
+      // 最後にここでデータをgetする
+      $items = $item->paginate(5);
+
+      return view('/rank', compact('items','count_favorite'));
+
+
     }
 
 }

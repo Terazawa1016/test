@@ -30,7 +30,7 @@
             @csrf
             <input type="submit" value="削除">
           </form>
-          <span class="cart-item-price">¥{{$item->item->price}}</span>
+          <span class="cart-item-price">¥{{number_format($item->item->price)}}</span>
 
 <!--数量の値をPOSTで送る-->
 
@@ -51,7 +51,7 @@
 
     <div class="buy-sum-box">
       <span class="buy-sum-title">合計</span>
-      <span class="buy-sum-price">¥{{$sum_price}}</span>
+      <span class="buy-sum-price">¥{{number_format($sum_price)}}</span>
     </div>
     <div>
 

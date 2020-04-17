@@ -3,6 +3,7 @@
 
 body {
   /* background-color: #f4f7f8; */
+  background: #D8D8D8;
 }
 
 .my-navbar {
@@ -61,4 +62,23 @@ a.my-navbar-item:hover {
 .list-group-item.active {
     background-color: #D8D8D8;
     border: #E0F8F7;
+  }
+
+/* -------------------------------------------------------------------------- */
+
+  .btn-flat-border2 {
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    margin: 10px 0 20px;
+
+    text-decoration: none;
+    color: #000;
+    border: solid 2px #BDBDBD;
+    border-radius: 3px;
+    transition: .4s;
+  }
+
+  .btn-flat-border2:hover {
+    background: #FF8000;
+    color: white;
   }

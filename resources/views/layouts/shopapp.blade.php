@@ -17,7 +17,7 @@
 <body>
   <header>
     <nav class="my-navbar">
-      <a class="my-navbar-brand" href="{{route('top')}}">
+      <a class="my-navbar-brand" href="{{route('login')}}">
         <img class="logo" src="/storage/images/logo.png" alt="TEST SHOP">
       </a>
       <div class="my-navbar-control">
@@ -25,9 +25,9 @@
         @if(Auth::check())
 
 {{--Auth::user()でログイン中のユーザーを取得する--}}
-        <span class="my-navbar-item">ようこそ、{{Auth::user()->name}}さん</span>
+        <span class="my-navbar-item">{{Auth::user()->name}}</span>
         |
-        <!-- <a href="#" id="logout" class="my-navbar-item">ログアウト</a> -->
+        <a href="#" id="logout" class="my-navbar-item">ログアウト</a>
         <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none;">
           <input type="submit" value="logout">
           @csrf

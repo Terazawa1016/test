@@ -41,23 +41,15 @@
 
       <nav>
            <ul class="header-list">
-               <li><a href="{{route('folio')}}">home</a></li>
-               <li><a href="{{route('top')}}">news</a></li>
-               <li><a href="{{route('like')}}">chat</a></li>
-               <li><a href="#">ranking</a></li>
+               <li><a href="{{route('home')}}">home</a></li>
+               <li><a href="/home?tab_id=1">favorite</a></li>
+               <li><a href="{{route('rank')}}">ranking</a></li>
+               <li><a href="{{route('form')}}">form</a></li>
            </ul>
        </nav>
   </header>
   @yield('content')
   <footer>
-    <nav>
-    <ul class="flex-bottom">
-        <li><a href="#" target="_blank">sitemap</a></li>
-        <li><a href="#" target="_blank">privacy</a></li>
-        <li><a href="#" target="_blank">form</a></li>
-        <li><a href="#" target="_blank">guide</a></li>
-    </ul>
-    </nav>
     <p><small> &#169; TestUser All Rights Reserved.</small></p>
 </footer>
 
