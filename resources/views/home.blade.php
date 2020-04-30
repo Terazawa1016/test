@@ -6,7 +6,7 @@
     <nav class="nav">
       <div class="sticky">
        <div class="nav-main">
-           <h2 class="radius">Correction</h2>
+           <h2 class="radius">Collection</h2>
            <ul class="left">
 {{--更新順にアイテム取得--}}
                 <li>

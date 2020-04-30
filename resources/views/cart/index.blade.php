@@ -55,7 +55,10 @@
     </div>
     <div>
 
-<!--購入結果ページへ"id"を送る-->
+      {{-- ペイパルのボタン設定 --}}
+      <div id="paypal-button-container" class="paypal_buttom"></div>
+
+      {{-- 購入結果ページへ"id"を送る --}}
 
       <form action="{{route('finish')}}" method="get">
         <input class="buy-btn" type="submit" value="購入する">

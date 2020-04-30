@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::delete('/cart/{user_id}/api', 'CartController@api_delete')->name('api.delete.cart');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -66,3 +68,4 @@ Route::get('like/{id}','LikeController@store')->name('likes.like');
 Route::get('dislike/{id}','LikeController@destroy')->name('likes.dislike');
 
 Route::get('put/{item_id}', 'HomeController@put')->name('put');
+

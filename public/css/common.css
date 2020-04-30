@@ -122,6 +122,7 @@ header {
     margin-right:10px;
 }
 
+
 .nav-main{
   /* min-width:400px; */
     border:solid 1px #ffffff;
@@ -226,7 +227,7 @@ a:visited.nemu  {
 
 .nav{
     float:left;
-    width:40%;
+    width:25%;
     font-size:15px;
     margin-top:30px;
     margin-right:10px;
@@ -276,14 +277,18 @@ a:visited.nemu  {
 
 .item-list {
   padding-right:10%;
+  /* width:70%; */
+
 }
 
 .item-list li {
   float:left;
   margin-top: 40px;
-  margin-left: 20px;
-  width:250px;
-  display: flex;
+  margin-left: 80px;
+  /* padding-right:10px; */
+  height:280px;
+  /* width:250px; */
+  /* display:flex; */
 
 
 }
@@ -601,6 +606,12 @@ img:hover {
 
 /* ------------------------------------------------------------------------- */
 
+.page {
+    /* margin-left:220px; */
+    /* margin: 0 auto; */
+    padding-top:30px;
+    text-align: center;
+}
 
 .page li {
 
@@ -615,7 +626,6 @@ img:hover {
     color: #fff;
 }
 
-.page {
-    margin-left:220px;
-    /* margin:0 auto; */
+.paypal_buttom {
+  text-align: center;
 }

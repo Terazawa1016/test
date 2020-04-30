@@ -82,7 +82,7 @@ class HomeController extends Controller
     }
 
 // 最後にここでデータをgetする
-    $items = $item->paginate(5);
+    $items = $item->paginate(6);
 
       return view('/home', compact('items','count_favorite'));
     }
@@ -167,7 +167,7 @@ class HomeController extends Controller
         });
 
       // 最後にここでデータをgetする
-      $items = $item->paginate(5);
+      $items = $item->paginate(6);
 
       return view('/rank', compact('items','count_favorite'));
 
