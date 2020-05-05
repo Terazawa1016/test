@@ -3,12 +3,16 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <title>管理ページ</title>
     <link href="{{ asset('css/tool.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tool_small.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <h1>管理ページ</h1>
-    <div>
+    <div class ="create_item">
       <form method="post" action="{{route('logout')}}">
         @csrf
         <input class="nemu btn btn-secondary" type="submit" value="ログアウト">

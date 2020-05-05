@@ -2,8 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>ユーザ管理ページ</title>
   <link href="{{ asset('css/tool.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/tool_small.css') }}" rel="stylesheet">
+
 </head>
 <body>
   <h1>管理ページ</h1>

@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+header {
+    /* background: none; */
+    padding-bottom: 0;
+}
+body {
+    background: #d8d8d8;
+    background-image: url("/storage/images/test_shop.jpg");
+    width: 100%;
+}
+
+.btn-flat-border {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    margin-right: 30px;
+}
+
+.header-list a {
+    padding: 0;
+    margin-right: 30px;
+}
+footer {
+    background: none;
+    border-top: none;
+    margin-top: 15em;
+}
+
+@media screen and (max-width: 420px) {
+    /* 420pxまでの幅の場合に適応される */
+    .header-list {
+        width: 100%;
+    }
+    body {
+        background: #d8d8d8;
+        background-image: url("/storage/images/test_shop3.jpg");
+        /* width: 375px; */
+
+        background-size: 375px;
+    }
+}

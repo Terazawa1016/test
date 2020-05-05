@@ -28,7 +28,7 @@
 <!--削除した際にこのページを表示する-->
           <form class="cart-item-del" action="{{route('cart.delete',['item_id' => $item->id])}}" method="post">
             @csrf
-            <input type="submit" value="削除">
+            <input class="delete-cart" type="submit" value="削除">
           </form>
           <span class="cart-item-price">¥{{number_format($item->item->price)}}</span>
 

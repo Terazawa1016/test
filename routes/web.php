@@ -22,7 +22,7 @@ Route::get('/test','TestController@index');
 
 /**トップページ----------------------------------------------------------------**/
 
-Route::get('/folio', 'FolioController@folio')->name('folio');
+Route::get('/content', 'ContentController@content')->name('content');
 
 Auth::routes();
 
