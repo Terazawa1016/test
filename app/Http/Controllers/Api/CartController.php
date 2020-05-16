@@ -9,13 +9,12 @@ use App\Cart;
 
 class CartController extends Controller
 {
-    public function delete($user_id)
+  public function delete($user_id)
   {
 
     Cart::where('user_id', $user_id)
-    ->delete();
+      ->delete();
 
     return true;
   }
-
 }

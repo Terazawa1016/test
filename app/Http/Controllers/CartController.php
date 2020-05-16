@@ -16,42 +16,23 @@ class CartController extends Controller
 {
   public function __construct()
   {
-      $this->middleware('auth');
+    $this->middleware('auth');
   }
 
   public function index()
   {
-    $user=Auth::user();
-    $items = Cart::where('user_id',$user->id)->get();
+    $user = Auth::user();
+    $items = Cart::where('user_id', $user->id)->get();
 
-    // $client = new \GuzzleHttp\Client();
-    // $res = $client->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [
-    //   'form_params' => [
-    //    'grant_type' => 'client_credentials'
-    //   ],
-    //    'auth' => [
-    //      'AThh_KGgAVaWBMCU4MRNG7ZrkD2SKQhbez_RDFYx_PkIlh-qIcWp0k4IijJqQEmDU_seSWqdKw7l3OYI',
-    //      'EN3qlmgZeEZTILdS8C5x-Ka-T91A1iuKXTaxjHrip5ZJiL96LqxgnHIYjyWUozwll1OICbGh8xkBOhi-'
-    //    ],
-    //     'headers' => [
-    //       'Content-Type' => 'application/json',
-    //       'Accept-Language' => 'en_US'
-
-    //     ]
-    // ]);
-
-    // $json = json_decode($res->getBody(), true);
-
-
-// dd($items[0]);
-    return view('/cart.index', compact('items','user'));
+    // dd($items[0]);
+    return view('/cart.index', compact('items', 'user'));
   }
 
   public function delete(Request $request, $item_id)
   {
 
     Cart::where('id', $item_id)
-    ->delete();
+      ->delete();
 
     return redirect('/cart');
   }
@@ -66,7 +47,7 @@ class CartController extends Controller
 
     //値を部分的に更新
 
-// dd($input);
+    // dd($input);
     $item->fill($input);
     $item->save();
 
@@ -77,22 +58,49 @@ class CartController extends Controller
   {
     $user = Auth::user();
     $items = Cart::where('user_id', $user->id)->get();
-    Cart::where('user_id', $user->id)->delete();
 
-//商品が買われた数を保存
- foreach ($items as $item){
-   $item_manage = ItemManage::where(['item_id'=>$item->item_id])->first();
-   if ($item_manage) {
-     $item_manage['buy_item'] += $item['amount'];
-   } else {
-     $item_manage = new ItemManage;
-     $item_manage['buy_item'] = $item['amount'];
-     $item_manage['item_id'] = $item['item_id'];
-   }
-   $item_manage->save();
- }
+    \DB::transaction(function () use ($items, $user) {
 
-// dd($items[0]);
+      Cart::where('user_id', $user->id)->delete();
+
+      // itemStockの在庫を削除
+      foreach ($items as $item) {
+        unset($item['user_id']);
+        unset($item['id']);
+
+        // dd($item);
+
+        $item_stock = ItemStock::where([
+          'item_id' => $item->item_id
+        ])->first();
+
+
+        if ($item_stock) {
+          $item_stock['stock'] -= $item['amount'];
+        } else {
+          $item_stock = new ItemStock;
+          $item_stock['stock'] = $item['amount'];
+          $item_stock['item_id'] = $item['item_id'];
+        }
+        // dd($item_stock);
+        $item_stock->save();
+      }
+
+      //商品が買われた数を保存
+      foreach ($items as $item) {
+        $item_manage = ItemManage::where(['item_id' => $item->item_id])->first();
+        if ($item_manage) {
+          $item_manage['buy_item'] += $item['amount'];
+        } else {
+          $item_manage = new ItemManage;
+          $item_manage['buy_item'] = $item['amount'];
+          $item_manage['item_id'] = $item['item_id'];
+        }
+        $item_manage->save();
+      }
+      // 更新処理
+    });
+    // dd($items[0]);
     return view('/cart.finish', compact('items'));
   }
 
@@ -100,10 +108,8 @@ class CartController extends Controller
   {
 
     Cart::where('user_id', $user_id)
-    ->delete();
+      ->delete();
 
     return true;
   }
-
-
 }
